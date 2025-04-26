@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trash Concierge | Elite Summer Bin Service</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- AOS for scroll animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Swiper for testimonials -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <style>
+    /*— Variables —*/
+    :root {
+      --clr-primary: #0055FF;
+      --clr-accent: #00CC88;
+      --clr-gold:   #D4AF37;
+      --clr-dark:   #222;
+      --clr-light:  #FAFAFA;
+      --font-head:  'Montserrat', sans-serif;
+      --font-body:  'Roboto', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--clr-light);
+      color: var(--clr-dark);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+    /*— Buttons —*/
+    .btn {
+      display: inline-block;
+      padding: .75rem 1.5rem;
+      border-radius: .375rem;
+      font-weight: 700;
+      background: var(--clr-primary);
+      color: #fff;
+      transition: background .3s, transform .2s;
+    }
+    .btn:hover { background: #0041cc; transform: translateY(-2px); }
+
+    /*— Sections & Typography —*/
+    section { padding: 4rem 0; }
+    h1,h2,h3 { font-family: var(--font-head); margin-bottom: 1rem; }
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+    p { margin-bottom: 1rem; }
+
+    /*— NAV —*/
+    nav {
+      position: fixed; top:0; left:0; width:100%;
+      background: rgba(255,255,255,.8);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(0,0,0,.1);
+      z-index: 1000;
+    }
+    nav .container {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 0;
+    }
+    nav a { margin-left: 1.5rem; font-weight: 600; }
+
+    /*— HERO —*/
+    #hero {
+      position: relative; height: 100vh; overflow: hidden;
+      background: url('https://source.unsplash.com/1600x900/?trash,house') center/cover no-repeat;
+    }
+    #hero::before {
+      content: ""; position: absolute; inset:0;
+      background: rgba(0,0,0,.5);
+    }
+    #hero .content {
+      position: relative; z-index: 2;
+      top: 50%; transform: translateY(-50%);
+      text-align: center; color: #fff;
+      padding: 0 1rem;
+    }
+    #hero h1 {
+      background: linear-gradient(90deg, #0055FF, #00CC88);
+      -webkit-background-clip: text; color: transparent;
+      font-size: 3rem;
+    }
+    #hero p {
+      font-size: 1.125rem; max-width: 600px; margin: 1rem auto 2rem;
+    }
+
+    /*— OUR PROCESS (Typewriter) —*/
+    #service-process {
+      background: #fff; text-align: center;
+    }
+    #service-process h2 {
+      font-size: 2.5rem; margin-bottom: 1.5rem;
+    }
+    #typewriter-text {
+      font-size: 1.25rem; color: #333;
+      min-height: 8rem; white-space: pre-wrap; text-align: center;
+    }
+
+    /*— FEATURES —*/
+    #features {
+      background: #fff; text-align: center;
+    }
+    #features .grid {
+      display: grid; grid-template-columns: 1fr; gap: 2rem;
+    }
+    @media(min-width:768px){ #features .grid { grid-template-columns: repeat(3,1fr); } }
+    .feature {
+      padding: 2rem; border-radius: .5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,.05);
+      transition: transform .3s;
+    }
+    .feature:hover { transform: translateY(-5px); }
+    .feature i {
+      font-size: 2rem; color: var(--clr-gold); margin-bottom: 1rem;
+    }
+
+    /*— WHO I AM —*/
+    #whoiam {
+      background: var(--clr-light);
+    }
+    #whoiam .container {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 2rem;
+      max-width: 900px; margin: 0 auto;
+    }
+    .bio-photo {
+      width: 180px; height: 180px; border-radius: 50%;
+      object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    }
+
+    /*— REGIONS —*/
+    #regions .cards {
+      display: grid; grid-template-columns: 1fr; gap:2rem;
+    }
+    @media(min-width:768px){ #regions .cards { grid-template-columns: repeat(4,1fr); } }
+    .region-card {
+      position: relative; border-radius: .5rem; overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,.05);
+    }
+    .region-card img { width:100%; height:200px; object-fit:cover; }
+    .region-card h3 {
+      position: absolute; bottom: 1rem; left:50%; transform: translateX(-50%);
+      background: rgba(0,0,0,.6); color: #fff; padding: .5rem 1rem; border-radius: .375rem;
+    }
+
+    /*— PRICING —*/
+    #pricing .plan {
+      background: #fff; padding:2rem; border-radius:.5rem;
+      box-shadow:0 4px 12px rgba(0,0,0,.05); text-align:center;
+      transition:transform .3s;
+    }
+    #pricing .plan:hover { transform: translateY(-5px); }
+    #pricing .price {
+      font-size:2.5rem; color: var(--clr-accent); margin:1rem 0;
+    }
+    #pricing ul {
+      list-style:none; text-align:left; padding-left:1rem; margin-bottom:1.5rem;
+    }
+    #pricing li {
+      position:relative; margin: .75rem 0; padding-left:1.5rem;
+    }
+    #pricing li::before {
+      content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight:900;
+      position:absolute; left:0; top:0; color:var(--clr-primary);
+    }
+
+    /*— TESTIMONIALS —*/
+    #testimonials { background: var(--clr-light); }
+    .swiper-container { padding:2rem 0; }
+    .swiper-slide {
+      background: #fff; padding:2rem; border-radius:.5rem;
+      box-shadow:0 4px 12px rgba(0,0,0,.05); position:relative;
+      font-style:italic;
+    }
+    .swiper-slide::before {
+      content: "“"; font-size:4rem; position:absolute; top:-10px; left:10px;
+      color:var(--clr-gold);
+    }
+
+    /*— FAQ —*/
+    #faq details {
+      background:#fff; padding:1rem; margin-bottom:1rem; border-radius:.5rem;
+      box-shadow:0 2px 6px rgba(0,0,0,.05); cursor:pointer;
+    }
+    #faq summary { font-weight:600; }
+
+    /*— CONTACT —*/
+    #contact form {
+      background:#fff; padding:2rem; border-radius:.5rem;
+      box-shadow:0 4px 12px rgba(0,0,0,.05); max-width:600px; margin:0 auto;
+      display:grid; gap:1rem;
+    }
+    #contact input, #contact select {
+      padding:.75rem; border:1px solid #ddd; border-radius:.375rem; width:100%;
+    }
+
+    /*— FOOTER —*/
+    footer {
+      text-align:center; padding:2rem 0; font-size:.875rem; color:#666;
+    }
+  </style>
+</head>
+<body data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-anchor-placement="top-bottom">
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <a href="#hero" class="btn">Trash Concierge</a>
+      <div>
+        <a href="#hero">Home</a>
+        <a href="#features">Why Us</a>
+        <a href="#whoiam">Who I Am</a>
+        <a href="#service-process">Our Process</a>
+        <a href="#regions">Coverage</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" data-aos="fade-up">
+    <div class="content container">
+      <h1>Elite Summer Bin Service</h1>
+      <p>10 weekly curb-ready visits (Jun 1 – Aug 2), photo-proof delivered — so you focus on guests while I fund my IB & law aspirations.</p>
+      <a href="#contact" class="btn">Book $200 Package</a>
+    </div>
+  </section>
+
+  <!-- OUR PROCESS -->
+  <section id="service-process" data-aos="fade-up">
+    <div class="container">
+      <h2>Our Process</h2>
+      <div id="typewriter-text"></div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" data-aos="fade-up">
+    <div class="container grid">
+      <div class="feature" data-aos="zoom-in" data-aos-delay="100">
+        <i class="fas fa-check-circle"></i>
+        <h3>Hassle-Free</h3>
+        <p>Bins out by 7 AM, home by 7 PM—every pickup guaranteed.</p>
+      </div>
+      <div class="feature" data-aos="zoom-in" data-aos-delay="200">
+        <i class="fas fa-camera"></i>
+        <h3>Photo Proof</h3>
+        <p>Receive a timestamped photo after each service.</p>
+      </div>
+      <div class="feature" data-aos="zoom-in" data-aos-delay="300">
+        <i class="fas fa-bolt"></i>
+        <h3>Expert Precision</h3>
+        <p>Meticulous timing and attention to detail—engineered for excellence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO I AM -->
+  <section id="whoiam" data-aos="fade-up">
+    <div class="container">
+      <img src="https://source.unsplash.com/200x200/?portrait,student" alt="Blake Bird" class="bio-photo" />
+      <div>
+        <h2>Who I Am</h2>
+        <p>I'm <strong>Blake Bird</strong>, a junior at High Point University. Double-majoring in <strong>Physics</strong> & <strong>Mathematical Economics</strong>, with additional majors in <strong>Accounting</strong> & <strong>Finance</strong>, plus a minor in <strong>Data Analytics</strong>.</p>
+        <p>My independent research spans <em>magnetic stabilization for spacecraft</em> and <em>racing line optimization</em>—blending engineering rigor with mathematical precision.</p>
+        <p>This summer business funds my path toward top <strong>Investment Banking</strong> internships and, ultimately, a career as a <strong>Corporate Lawyer</strong>. Every bin I service supports my journey.</p>
+        <p>When you choose Trash Concierge, you’re backing someone committed to reliability, professionalism, and the highest standards in every detail.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGIONS -->
+  <section id="regions" data-aos="fade-up">
+    <div class="container">
+      <h2>Servicing These Areas</h2>
+      <div class="cards">
+        <div class="region-card" data-aos="flip-left" data-aos-delay="100">
+          <img src="https://source.unsplash.com/400x200/?house,danielisland" alt="Daniel Island" />
+          <h3>Daniel Island</h3>
+        </div>
+        <div class="region-card" data-aos="flip-left" data-aos-delay="200">
+          <img src="https://source.unsplash.com/400x200/?house,mountpleasant" alt="Mount Pleasant" />
+          <h3>Mount Pleasant</h3>
+        </div>
+        <div class="region-card" data-aos="flip-left" data-aos-delay="300">
+          <img src="https://source.unsplash.com/400x200/?house,isleofpalms" alt="Isle of Palms" />
+          <h3>Isle of Palms</h3>
+        </div>
+        <div class="region-card" data-aos="flip-left" data-aos-delay="400">
+          <img src="https://source.unsplash.com/400x200/?house,sullivans" alt="Sullivan's Island" />
+          <h3>Sullivan’s Island</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" data-aos="fade-up">
+    <div class="container plan">
+      <h2>Summer Package</h2>
+      <div class="price">$200</div>
+      <ul>
+        <li>10 weekly visits (Jun 1 – Aug 2)</li>
+        <li>Bins out by 7 AM, returned by 7 PM</li>
+        <li>Photo proof after each service</li>
+      </ul>
+      <a href="#contact" class="btn">Book Now</a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" data-aos="fade-up">
+    <div class="container">
+      <h2>What Professors Say</h2>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide testi">
+            “Blake’s reliability and attention to detail are unmatched.”<br/>
+            <strong>— Dr. Emily Carter, Physics Dept Chair</strong>
+          </div>
+          <div class="swiper-slide testi">
+            “His service let me focus on teaching, not trash logistics.”<br/>
+            <strong>— Prof. Linda Nguyen, Economics Faculty</strong>
+          </div>
+          <div class="swiper-slide testi">
+            “A model of professionalism—highly recommended.”<br/>
+            <strong>— James Wilcox, HPU Career Advisor</strong>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" data-aos="fade-up">
+    <div class="container">
+      <h2>FAQ</h2>
+      <details data-aos="fade-up" data-aos-delay="100">
+        <summary>Can I pause mid-summer?</summary>
+        <p>Yes—just give 24-hour notice before your next pickup.</p>
+      </details>
+      <details data-aos="fade-up" data-aos-delay="200">
+        <summary>What if trash day changes?</summary>
+        <p>I monitor local schedule changes and adjust automatically.</p>
+      </details>
+      <details data-aos="fade-up" data-aos-delay="300">
+        <summary>How do I get my photo proof?</summary>
+        <p>An email with a timestamped photo is sent after each visit.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" data-aos="fade-up">
+    <div class="container">
+      <h2>Ready to Book?</h2>
+      <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <input type="hidden" name="_replyto" value="bbird1@highpoint.edu" />
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <label>Start Date<input type="date" name="start_date" value="2025-06-01" required /></label>
+        <label>End Date<input type="date" name="end_date" value="2025-08-02" required /></label>
+        <button type="submit" class="btn">Submit Booking</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer data-aos="fade-up">
+    <div class="container">
+      <p>&copy; 2025 Trash Concierge. All rights reserved.</p>
+      <p>Email: <a href="mailto:bbird1@highpoint.edu">bbird1@highpoint.edu</a> | Phone: (843) 555-0123</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script> AOS.init(); </script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    new Swiper('.swiper-container', {
+      loop: true,
+      autoplay: { delay: 4000 },
+      pagination: { el: '.swiper-pagination', clickable: true }
+    });
+  </script>
+
+  <!-- Typewriter Script -->
+  <script>
+    const lines = [
+      "• Put your trash bins out at the curb before 7 AM",
+      "• Return them to the house before 7 PM",
+      "• Send you a timestamped photo every time",
+      "• Monitor changes in trash pickup schedules",
+      "• Guarantee reliability no matter what",
+      "No apps, no guesswork, no worries. Just elite service, on time, every time."
+    ];
+    const target = document.getElementById("typewriter-text");
+    let lineIndex = 0, charIndex = 0;
+    const typingSpeed = 30;
+
+    function typeLine() {
+      if (lineIndex < lines.length) {
+        if (charIndex < lines[lineIndex].length) {
+          target.innerHTML += lines[lineIndex].charAt(charIndex);
+          charIndex++;
+          setTimeout(typeLine, typingSpeed);
+        } else {
+          target.innerHTML += "\n";
+          charIndex = 0;
+          lineIndex++;
+          setTimeout(typeLine, 300);
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            target.innerHTML = "";
+            lineIndex = 0; charIndex = 0;
+            typeLine();
+          }
+        });
+      }, { threshold: 0.6 });
+      obs.observe(document.getElementById('service-process'));
+    });
+  </script>
+</body>
+</html>
