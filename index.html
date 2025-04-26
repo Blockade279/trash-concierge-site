@@ -76,7 +76,7 @@
     /*— HERO —*/
     #hero {
       position: relative; height: 100vh; overflow: hidden;
-      background: url('https://source.unsplash.com/1600x900/?trash,house') center/cover no-repeat;
+      background: url('images/hero.jpg') center/cover no-repeat;
     }
     #hero::before {
       content: ""; position: absolute; inset:0;
@@ -136,8 +136,23 @@
       max-width: 900px; margin: 0 auto;
     }
     .bio-photo {
-      width: 180px; height: 180px; border-radius: 50%;
+      width: 200px; height: auto;
+      border-radius: .5rem;
       object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    }
+
+    /*— OBSTACLE CRUSHER —*/
+    #obstacle-challenges {
+      background: #fff;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 2rem; padding: 4rem 1rem;
+    }
+    #obstacle-challenges .text {
+      max-width: 600px; text-align:left;
+    }
+    #obstacle-challenges img {
+      max-width: 400px; width:100%;
+      border-radius: .5rem; box-shadow: 0 4px 12px rgba(0,0,0,.05);
     }
 
     /*— REGIONS —*/
@@ -223,6 +238,7 @@
         <a href="#features">Why Us</a>
         <a href="#whoiam">Who I Am</a>
         <a href="#service-process">Our Process</a>
+        <a href="#obstacle-challenges">Toughest Challenges</a>
         <a href="#regions">Coverage</a>
         <a href="#pricing">Pricing</a>
         <a href="#testimonials">Testimonials</a>
@@ -244,7 +260,7 @@
   <!-- OUR PROCESS -->
   <section id="service-process" data-aos="fade-up">
     <div class="container">
-      <h2>Our Process</h2>
+      <h2 data-aos="fade-down">Our Process</h2>
       <div id="typewriter-text"></div>
     </div>
   </section>
@@ -273,8 +289,8 @@
   <!-- WHO I AM -->
   <section id="whoiam" data-aos="fade-up">
     <div class="container">
-      <img src="https://source.unsplash.com/200x200/?portrait,student" alt="Blake Bird" class="bio-photo" />
-      <div>
+      <img src="images/profile.jpg" alt="Blake Bird" class="bio-photo" data-aos="fade-up" data-aos-offset="200" />
+      <div data-aos="fade-left" data-aos-offset="200">
         <h2>Who I Am</h2>
         <p>I'm <strong>Blake Bird</strong>, a junior at High Point University. Double-majoring in <strong>Physics</strong> & <strong>Mathematical Economics</strong>, with additional majors in <strong>Accounting</strong> & <strong>Finance</strong>, plus a minor in <strong>Data Analytics</strong>.</p>
         <p>My independent research spans <em>magnetic stabilization for spacecraft</em> and <em>racing line optimization</em>—blending engineering rigor with mathematical precision.</p>
@@ -282,6 +298,16 @@
         <p>When you choose Trash Concierge, you’re backing someone committed to reliability, professionalism, and the highest standards in every detail.</p>
       </div>
     </div>
+  </section>
+
+  <!-- OBSTACLE CRUSHER -->
+  <section id="obstacle-challenges" data-aos="fade-up">
+    <div class="text" data-aos="fade-right">
+      <h2>Handling the Toughest Trash Challenges</h2>
+      <p>From surprise construction zones to gates that disappear on you, I make sure your bins get out—no matter what stands in the way.</p>
+      <p><em>Obstacle? Challenge accepted.</em></p>
+    </div>
+    <img src="images/gate.jpg" alt="Gate obstacle" data-aos="fade-up" data-aos-delay="200" />
   </section>
 
   <!-- REGIONS -->
@@ -391,7 +417,12 @@
 
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script> AOS.init(); </script>
+  <script> AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+  </script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
     new Swiper('.swiper-container', {
@@ -413,7 +444,7 @@
     ];
     const target = document.getElementById("typewriter-text");
     let lineIndex = 0, charIndex = 0;
-    const typingSpeed = 30;
+    const typingSpeed = 25; // a bit faster
 
     function typeLine() {
       if (lineIndex < lines.length) {
@@ -422,10 +453,10 @@
           charIndex++;
           setTimeout(typeLine, typingSpeed);
         } else {
-          target.innerHTML += "\n";
+          target.innerHTML += "\n\n";
           charIndex = 0;
           lineIndex++;
-          setTimeout(typeLine, 300);
+          setTimeout(typeLine, 200);
         }
       }
     }
@@ -439,7 +470,7 @@
             typeLine();
           }
         });
-      }, { threshold: 0.6 });
+      }, { threshold: 0.5 });
       obs.observe(document.getElementById('service-process'));
     });
   </script>
