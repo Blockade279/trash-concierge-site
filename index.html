@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
   <style>
-    /*— Variables —*/
+    /*— Variables & Global —*/
     :root {
       --clr-primary: #0055FF;
       --clr-accent: #00CC88;
@@ -29,7 +29,7 @@
       --font-body:  'Roboto', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
-    html { scroll-behavior: smooth; }
+    html, body { overflow-x: hidden; scroll-behavior: smooth; }
     body { font-family: var(--font-body); background: var(--clr-light); color: var(--clr-dark); line-height:1.6; }
     a { text-decoration: none; color: inherit; }
     .container { width: 90%; max-width: 1200px; margin: 0 auto; }
@@ -66,51 +66,39 @@
       display: flex; align-items: center; justify-content: space-between;
       padding:1rem 0;
     }
-    /* logo-button */
     nav .container > .btn { margin:0; }
-    /* links + hamburger */
     .hamburger {
-      display: none;
-      flex-direction: column;
-      gap:5px;
-      background:none;
-      border:none;
-      cursor:pointer;
+      display: none; flex-direction: column; gap:5px;
+      background:none; border:none; cursor:pointer;
     }
     .hamburger span {
-      display:block;
-      width:25px; height:3px;
-      background: var(--clr-dark);
-      border-radius:2px;
+      display:block; width:25px; height:3px;
+      background: var(--clr-dark); border-radius:2px;
     }
     .links {
-      display:flex;
-      flex-wrap:wrap;
-      gap:1.5rem;
-      align-items:center;
+      display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center;
     }
     .links a { font-weight:600; }
-
-    /* desktop: always show links, hide hamburger */
     @media(max-width:768px){
       .hamburger { display:flex; }
-      .links { display:none; flex-direction:column; align-items:flex-start; margin-top:.5rem; }
+      .links {
+        display:none;
+        position:absolute; top:70px; left:0; width:100%;
+        background:rgba(255,255,255,.95);
+        flex-direction:column; align-items:flex-start;
+        padding:1rem;
+      }
       .links.active { display:flex; }
     }
 
-    /* push hero down so nav never overlaps */
-    #hero { margin-top:70px; }
-
     /*— HERO —*/
+    #hero { margin-top:70px; }
     #hero {
-      position:relative;
-      height: calc(100vh - 70px);
-      overflow:hidden;
+      position:relative; height:calc(100vh - 70px); overflow:hidden;
       background: url('images/hero.jpg') center/cover no-repeat;
     }
     #hero::before {
-      content:""; position:absolute; inset:0;
-      background:rgba(0,0,0,.5);
+      content:""; position:absolute; inset:0; background:rgba(0,0,0,.5);
     }
     #hero .content {
       position:relative; z-index:2;
@@ -152,25 +140,21 @@
     /*— WHO I AM —*/
     #whoiam { background:var(--clr-light); }
     #whoiam .container {
-      display:flex; flex-wrap:wrap;
-      align-items:flex-start; /* top-align on desktop */
+      display:flex; flex-wrap:wrap; align-items:flex-start;
       gap:2rem; max-width:900px; margin:0 auto;
     }
     .bio-photo {
       width:200px; height:auto; border-radius:.5rem;
       object-fit:cover; box-shadow:0 4px 12px rgba(0,0,0,.1);
     }
-    /* text takes remaining space */
     #whoiam .container > div { flex:1; }
-    /* mobile: stack */
     @media(max-width:768px){
       #whoiam .container { flex-direction:column; align-items:center; }
     }
 
-    /*— OBSTACLE CRUSHER —*/
+    /*— OBSTACLE CHALLENGER —*/
     #obstacle-challenges {
-      background:#fff;
-      display:flex; flex-wrap:wrap;
+      background:#fff; display:flex; flex-wrap:wrap;
       align-items:center; justify-content:center;
       gap:2rem; padding:4rem 1rem;
     }
@@ -213,8 +197,7 @@
     }
     #pricing li::before {
       content:"\f00c"; font-family:"Font Awesome 5 Free";
-      font-weight:900; position:absolute; left:0; top:0;
-      color:var(--clr-primary);
+      font-weight:900; position:absolute; left:0; top:0; color:var(--clr-primary);
     }
 
     /*— TESTIMONIALS —*/
@@ -388,40 +371,45 @@
       <h2>What People Say</h2>
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <!-- 1 -->
+          <!-- 1: Dad -->
           <div class="swiper-slide testi">
             “He promised he’d buy me a Ferrari one day.”<br/>
-            <strong>— Paul Bird, Dad</strong>
+            <strong>— Paul Bird, The Man Who Built Me: Dad</strong>
           </div>
-          <!-- 2 -->
+          <!-- 2: Dr. Ramsay -->
           <div class="swiper-slide testi">
-            “His dedication outshines any enrollment goal.”<br/>
-            <strong>— Dr. Kerr C. Ramsay III, SVP Enrollment</strong>
+            “hjk lpo wqer tyui”<br/>
+            <strong>— Dr. Kerr C. Ramsay III, SVP Enrollment at HPU</strong>
           </div>
-          <!-- 3 -->
+          <!-- 3: Beth -->
           <div class="swiper-slide testi">
-            “An inspiration in calculus and beyond.”<br/>
-            <strong>— Mrs. Renes, AP Calculus Teacher</strong>
+            “asdkfj lqw ero mnb”<br/>
+            <strong>— Beth Bird, My Greatest Blessing in Life: Mom</strong>
           </div>
-          <!-- 4 -->
+          <!-- 4: Drake -->
           <div class="swiper-slide testi">
-            “Magnetic personality meets mechanical precision.”<br/>
-            <strong>— Mrs. Desbrow, AP Physics Teacher</strong>
+            “asdjklf jklasd flkj”<br/>
+            <strong>— Drake West, Brother Beyond Blood</strong>
           </div>
-          <!-- 5 -->
+          <!-- 5: Mrs. Renes -->
           <div class="swiper-slide testi">
-            “Makes even trash day feel like date day.”<br/>
-            <strong>— Elliana, Girlfriend</strong>
+            “qwe rty uiopa sdfg”<br/>
+            <strong>— Mrs. Renes, AP Calculus AB at AMHS</strong>
           </div>
-          <!-- 6 -->
+          <!-- 6: Mrs. Desbrow -->
           <div class="swiper-slide testi">
-            “Best friend or best trash mover?”<br/>
-            <strong>— Billy, Best Friend</strong>
+            “zxc vbn mkjhg fdsa”<br/>
+            <strong>— Mrs. Desbrow, Calculus-Based Physics at AMHS</strong>
           </div>
-          <!-- 7 -->
+          <!-- 7: Elliana -->
           <div class="swiper-slide testi">
-            “He takes out my bins faster than my playlist.”<br/>
-            <strong>— Drake, Best Friend</strong>
+            “poi uytrew qlnm”<br/>
+            <strong>— Elliana Thacker, The Heart I Call Home</strong>
+          </div>
+          <!-- 8: Billy -->
+          <div class="swiper-slide testi">
+            “lkj hgf dsapoiu y”<br/>
+            <strong>— Billy Brodsky, Brother In All Battles</strong>
           </div>
         </div>
         <div class="swiper-pagination"></div>
@@ -457,7 +445,7 @@
         <input type="text" name="name" placeholder="Full Name" required />
         <input type="email" name="email" placeholder="Email Address" required />
         <label>Start Date <input type="date" name="start_date" value="2025-06-01" required /></label>
-        <label>End Date <input type="date" name="end_date"   value="2025-08-09" required /></label>
+        <label>End Date   <input type="date" name="end_date"   value="2025-08-09" required /></label>
         <button type="submit" class="btn">Submit Booking</button>
       </form>
     </div>
@@ -474,17 +462,20 @@
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // AOS init
+    // AOS
     AOS.init({ duration:800, easing:'ease-in-out', once:true });
 
-    // Hamburger toggle
-    document.querySelector('.hamburger').addEventListener('click', ()=> {
-      document.querySelector('.links').classList.toggle('active');
-    });
+    // Hamburger toggle & auto-close
+    const ham = document.querySelector('.hamburger');
+    const links = document.querySelector('.links');
+    ham.addEventListener('click', () => links.classList.toggle('active'));
+    document.querySelectorAll('.links a').forEach(a =>
+      a.addEventListener('click', () => links.classList.remove('active'))
+    );
   </script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
-    // Swiper
+    // Testimonials slider
     new Swiper('.swiper-container', {
       loop:true,
       autoplay:{ delay:4000 },
@@ -492,7 +483,7 @@
     });
   </script>
   <script>
-    // Typewriter runs once when scrolled into view
+    // Typewriter once
     const lines = [
       "• Put your trash bins out at the curb before 7 AM",
       "• Return them to the house before 7 PM",
@@ -501,29 +492,24 @@
       "• Guarantee reliability no matter what",
       "No apps, no guesswork, no worries. Just elite service, on time, every time."
     ];
-    const target = document.getElementById("typewriter-text");
-    let li = 0, ci = 0;
-    const speed = 25;
+    const tgt = document.getElementById("typewriter-text");
+    let li=0, ci=0, sp=25;
     function typeLine(){
       if(li<lines.length){
         if(ci<lines[li].length){
-          target.innerHTML += lines[li].charAt(ci++);
-          setTimeout(typeLine,speed);
+          tgt.innerHTML += lines[li].charAt(ci++);
+          setTimeout(typeLine, sp);
         } else {
-          target.innerHTML += "\n\n";
-          ci=0; li++;
-          setTimeout(typeLine,200);
+          tgt.innerHTML += "\n\n"; ci=0; li++; setTimeout(typeLine,200);
         }
       }
     }
-    document.addEventListener("DOMContentLoaded",()=>{
-      const obs = new IntersectionObserver((entries, o)=>{
-        if(entries[0].isIntersecting){
-          typeLine();
-          o.disconnect();
-        }
-      },{ threshold:0.5 });
-      obs.observe(document.getElementById('service-process'));
+    document.addEventListener("DOMContentLoaded", ()=>{
+      new IntersectionObserver((e, obs)=>{
+        if(e[0].isIntersecting){ typeLine(); obs.disconnect(); }
+      },{ threshold:0.5 }).observe(
+        document.getElementById('service-process')
+      );
     });
   </script>
 </body>
