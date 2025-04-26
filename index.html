@@ -227,6 +227,10 @@
       box-shadow:0 4px 12px rgba(0,0,0,.05);
       max-width:600px; margin:0 auto; display:grid; gap:1rem;
     }
+    /* new address field added */
+    #contact form input[name="address"] {
+      grid-column: 1 / -1; /* full width */
+    }
     #contact input, #contact select {
       padding:.75rem; border:1px solid #ddd;
       border-radius:.375rem; width:100%;
@@ -316,7 +320,7 @@
     </div>
   </section>
 
-  <!-- OBSTACLE CRUSHER -->
+  <!-- OBSTACLE CHALLENGER -->
   <section id="obstacle-challenges" data-aos="fade-up">
     <div class="text" data-aos="fade-right">
       <h2>Handling the Toughest Trash Challenges</h2>
@@ -441,13 +445,20 @@
     <div class="container">
       <h2>Ready to Book?</h2>
       <form action="https://formspree.io/f/xyzwznyq" method="POST">
-        <input type="hidden" name="_replyto" value="bbird1@highpoint.edu" />
+        <!-- redirect to thankyou.html -->
+        <input type="hidden" name="_next" value="thankyou.html" />
+        <!-- your fields -->
         <input type="text" name="name" placeholder="Full Name" required />
         <input type="email" name="email" placeholder="Email Address" required />
+        <!-- new address field -->
+        <input type="text" name="address" placeholder="Home Address" required />
         <label>Start Date <input type="date" name="start_date" value="2025-06-01" required /></label>
         <label>End Date   <input type="date" name="end_date"   value="2025-08-09" required /></label>
         <button type="submit" class="btn">Submit Booking</button>
       </form>
+      <p style="margin-top:.5rem;font-size:.875rem;color:#555;">
+        *After you submit, I’ll send Venmo payment instructions within 24 hours.
+      </p>
     </div>
   </section>
 
@@ -465,7 +476,7 @@
     // AOS
     AOS.init({ duration:800, easing:'ease-in-out', once:true });
 
-    // Hamburger toggle & auto-close
+    // Hamburger toggle + auto-close
     const ham = document.querySelector('.hamburger');
     const links = document.querySelector('.links');
     ham.addEventListener('click', () => links.classList.toggle('active'));
@@ -483,7 +494,7 @@
     });
   </script>
   <script>
-    // Typewriter once
+    // Typewriter (runs only once)
     const lines = [
       "• Put your trash bins out at the curb before 7 AM",
       "• Return them to the house before 7 PM",
@@ -493,20 +504,24 @@
       "No apps, no guesswork, no worries. Just elite service, on time, every time."
     ];
     const tgt = document.getElementById("typewriter-text");
-    let li=0, ci=0, sp=25;
+    let li=0, ci=0, spd=25;
     function typeLine(){
       if(li<lines.length){
         if(ci<lines[li].length){
           tgt.innerHTML += lines[li].charAt(ci++);
-          setTimeout(typeLine, sp);
+          setTimeout(typeLine, spd);
         } else {
-          tgt.innerHTML += "\n\n"; ci=0; li++; setTimeout(typeLine,200);
+          tgt.innerHTML += "\n\n";
+          ci=0; li++; setTimeout(typeLine,200);
         }
       }
     }
     document.addEventListener("DOMContentLoaded", ()=>{
-      new IntersectionObserver((e, obs)=>{
-        if(e[0].isIntersecting){ typeLine(); obs.disconnect(); }
+      new IntersectionObserver((entries, obs)=>{
+        if(entries[0].isIntersecting){
+          typeLine();
+          obs.disconnect();
+        }
       },{ threshold:0.5 }).observe(
         document.getElementById('service-process')
       );
