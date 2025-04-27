@@ -123,9 +123,15 @@
     #service-process { background:#fff; text-align:center; }
     #service-process h2 { font-size:2.5rem; margin-bottom:1.5rem; }
     #typewriter-text {
-      font-size:1.25rem; color:#333;
-      min-height:8rem; white-space:pre-wrap; text-align:center;
-    }
+  font-size:1.25rem;
+  color:#333;
+  /* fix the height so the section won’t expand */
+  height: 30rem;    /* ↑ pick whatever keeps all your lines visible */
+  overflow: hidden;
+  white-space: pre-wrap;
+  text-align: center;
+}
+
 
     /*— FEATURES —*/
     #features { background:#fff; text-align:center; }
