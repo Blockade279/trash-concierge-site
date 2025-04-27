@@ -30,7 +30,12 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
     html, body { overflow-x: hidden; scroll-behavior: smooth; }
-    body { font-family: var(--font-body); background: var(--clr-light); color: var(--clr-dark); line-height:1.6; }
+    body { 
+      font-family: var(--font-body); 
+      background: var(--clr-light); 
+      color: var(--clr-dark); 
+      line-height:1.6; 
+    }
     a { text-decoration: none; color: inherit; }
     .container { width: 90%; max-width: 1200px; margin: 0 auto; }
 
@@ -66,7 +71,6 @@
       display: flex; align-items: center; justify-content: space-between;
       padding:1rem 0;
     }
-    nav .container > .btn { margin:0; }
     .hamburger {
       display: none; flex-direction: column; gap:5px;
       background:none; border:none; cursor:pointer;
@@ -92,9 +96,11 @@
     }
 
     /*— HERO —*/
-    #hero { margin-top:70px; }
-    #hero {
-      position:relative; height:calc(100vh - 70px); overflow:hidden;
+    #hero { 
+      margin-top:70px; 
+      position:relative; 
+      height:calc(100vh - 70px); 
+      overflow:hidden;
       background: url('images/hero.jpg') center/cover no-repeat;
     }
     #hero::before {
@@ -147,7 +153,6 @@
       width:200px; height:auto; border-radius:.5rem;
       object-fit:cover; box-shadow:0 4px 12px rgba(0,0,0,.1);
     }
-    #whoiam .container > div { flex:1; }
     @media(max-width:768px){
       #whoiam .container { flex-direction:column; align-items:center; }
     }
@@ -227,9 +232,8 @@
       box-shadow:0 4px 12px rgba(0,0,0,.05);
       max-width:600px; margin:0 auto; display:grid; gap:1rem;
     }
-    /* new address field added */
     #contact form input[name="address"] {
-      grid-column: 1 / -1; /* full width */
+      grid-column: 1 / -1;
     }
     #contact input, #contact select {
       padding:.75rem; border:1px solid #ddd;
@@ -243,7 +247,7 @@
     }
   </style>
 </head>
-<body data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-anchor-placement="top-bottom">
+<body data-aos-easing="ease-in-out" data-aos-duration="800">
 
   <!-- NAV -->
   <nav>
@@ -373,42 +377,34 @@
       <h2>What People Say</h2>
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <!-- 1: Dad -->
           <div class="swiper-slide testi">
             “He promised he’d buy me a Ferrari one day.”<br/>
             <strong>— Paul Bird, The Man Who Built Me: Dad</strong>
           </div>
-          <!-- 2: Dr. Ramsay -->
           <div class="swiper-slide testi">
             “hjk lpo wqer tyui”<br/>
             <strong>— Dr. Kerr C. Ramsay III, SVP Enrollment at HPU</strong>
           </div>
-          <!-- 3: Beth -->
           <div class="swiper-slide testi">
             “asdkfj lqw ero mnb”<br/>
             <strong>— Beth Bird, My Greatest Blessing in Life: Mom</strong>
           </div>
-          <!-- 4: Drake -->
           <div class="swiper-slide testi">
             “asdjklf jklasd flkj”<br/>
             <strong>— Drake West, Brother Beyond Blood</strong>
           </div>
-          <!-- 5: Mrs. Renes -->
           <div class="swiper-slide testi">
             “qwe rty uiopa sdfg”<br/>
             <strong>— Mrs. Renes, AP Calculus AB Instructor at AMHS</strong>
           </div>
-          <!-- 6: Mrs. Desbrow -->
           <div class="swiper-slide testi">
             “zxc vbn mkjhg fdsa”<br/>
             <strong>— Mrs. Desbrow, Calculus-Based Physics Instructor at AMHS</strong>
           </div>
-          <!-- 7: Elliana -->
           <div class="swiper-slide testi">
             “poi uytrew qlnm”<br/>
             <strong>— Elliana Thacker, The Heart I Call Home</strong>
           </div>
-          <!-- 8: Billy -->
           <div class="swiper-slide testi">
             “lkj hgf dsapoiu y”<br/>
             <strong>— Billy Brodsky, Brother In All Battles</strong>
@@ -443,15 +439,14 @@
     <div class="container">
       <h2>Ready to Book?</h2>
       <form action="https://formspree.io/f/xyzwznyq" method="POST">
-        - <!-- redirect to thankyou.html -->
-- <input type="hidden" name="_next" value="/thankyou.html" />
-+ <!-- redirect to thankyou.html -->
-+ <input type="hidden" name="_next" value="thankyou.html" />
-        <!-- your fields -->
-        <input type="text" name="name" placeholder="Full Name" required />
-        <input type="email" name="email" placeholder="Email Address" required />
-        <!-- new address field -->
-        <input type="text" name="address" placeholder="Home Address" required />
+        <!-- FORCE redirect to your GitHub‐Pages URL -->
+        <input type="hidden"
+               name="_next"
+               value="https://blockade279.github.io/trash-concierge-site/thankyou.html" />
+
+        <input type="text"   name="name"       placeholder="Full Name"     required />
+        <input type="email"  name="email"      placeholder="Email Address" required />
+        <input type="text"   name="address"    placeholder="Home Address"  required />
         <label>Start Date <input type="date" name="start_date" value="2025-06-01" required /></label>
         <label>End Date   <input type="date" name="end_date"   value="2025-08-09" required /></label>
         <button type="submit" class="btn">Submit Booking</button>
@@ -472,29 +467,25 @@
 
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    // AOS
-    AOS.init({ duration:800, easing:'ease-in-out', once:true });
-
-    // Hamburger toggle + auto-close
-    const ham = document.querySelector('.hamburger');
-    const links = document.querySelector('.links');
-    ham.addEventListener('click', () => links.classList.toggle('active'));
-    document.querySelectorAll('.links a').forEach(a =>
-      a.addEventListener('click', () => links.classList.remove('active'))
-    );
-  </script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
+    // AOS init
+    AOS.init({ duration:800, easing:'ease-in-out', once:true });
+
+    // Hamburger toggle
+    document.querySelector('.hamburger')
+      .addEventListener('click', () => document.querySelector('.links').classList.toggle('active'));
+    document.querySelectorAll('.links a')
+      .forEach(a => a.addEventListener('click', () => document.querySelector('.links').classList.remove('active')));
+
     // Testimonials slider
     new Swiper('.swiper-container', {
       loop:true,
       autoplay:{ delay:4000 },
       pagination:{ el:'.swiper-pagination', clickable:true }
     });
-  </script>
-  <script>
-    // Typewriter (runs only once)
+
+    // Typewriter
     const lines = [
       "• Put your trash bins out at the curb before 7 AM",
       "• Return them to the house before 7 PM",
@@ -526,10 +517,8 @@
         document.getElementById('service-process')
       );
     });
-  </script>
 
-  <!-- Clear form on “back” so inputs don’t persist -->
-  <script>
+    // Clear form on “back” so fields reset
     window.addEventListener('pageshow', e => {
       if (e.persisted) {
         document.querySelector('#contact form').reset();
