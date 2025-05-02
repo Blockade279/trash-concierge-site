@@ -7,6 +7,10 @@
 
   <!-- AOS for subtle fade-up -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- FontAwesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
   <style>
     html, body { margin:0; padding:0; overflow-x:hidden; }
     body {
@@ -30,6 +34,7 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 2rem;
       margin-bottom: .5rem;
+      animation: pop 0.8s ease-out;
     }
     .thankyou p {
       margin: .75rem 0;
@@ -43,23 +48,48 @@
       font-weight: 700;
       background: #0055FF;
       color: #fff;
-      transition: background .3s;
+      transition: background .3s, transform .3s;
+      animation: pulse 1s ease-out 0.5s both;
     }
-    .thankyou .btn:hover { background: #0041cc; }
+    .thankyou .btn:hover {
+      background: #0041cc;
+      transform: scale(1.05);
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
   </style>
 </head>
 <body>
   <div class="thankyou" data-aos="fade-up">
     <h1>🎉 Thank You!</h1>
     <p>Your booking is confirmed.</p>
-    <p>I’ll be in touch to finalize your start date within 24 hours.</p>
-    <p>✅ No apps. ✅ No worries. ✅ Just elite service, every time.</p>
+    <p>🚀 Once your area’s sign‑ups hit the magic number, I’ll pop over your Venmo payment instructions—usually within 24 hours 😊 If we’re still a bit short, don’t worry, I’ll keep you in the loop!</p>
+    <p>✅ No apps. ✅ No worries. <i class="fas fa-trash-alt" aria-hidden="true"></i> Just elite service, every time.</p>
     <a href="index.html#hero" class="btn">Back to Home</a>
   </div>
 
+  <!-- AOS init -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration:600, easing:'ease-out' });
+  </script>
+
+  <!-- confetti animation -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script>
+    // small burst of confetti on load
+    confetti({
+      particleCount: 120,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
   </script>
 </body>
 </html>
