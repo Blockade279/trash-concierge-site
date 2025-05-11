@@ -30,11 +30,11 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
     html, body { overflow-x: hidden; scroll-behavior: smooth; }
-    body { 
-      font-family: var(--font-body); 
-      background: var(--clr-light); 
-      color: var(--clr-dark); 
-      line-height:1.6; 
+    body {
+      font-family: var(--font-body);
+      background: var(--clr-light);
+      color: var(--clr-dark);
+      line-height:1.6;
     }
     a { text-decoration: none; color: inherit; }
     .container { width: 90%; max-width: 1200px; margin: 0 auto; }
@@ -96,10 +96,10 @@
     }
 
     /*— HERO —*/
-    #hero { 
-      margin-top:70px; 
-      position:relative; 
-      height:calc(100vh - 70px); 
+    #hero {
+      margin-top:70px;
+      position:relative;
+      height:calc(100vh - 70px);
       overflow:hidden;
       background: url('images/hero.jpg') center/cover no-repeat;
     }
@@ -123,15 +123,13 @@
     #service-process { background:#fff; text-align:center; }
     #service-process h2 { font-size:2.5rem; margin-bottom:1.5rem; }
     #typewriter-text {
-  font-size:1.25rem;
-  color:#333;
-  /* fix the height so the section won’t expand */
-  height: 30rem;    /* ↑ pick whatever keeps all your lines visible */
-  overflow: hidden;
-  white-space: pre-wrap;
-  text-align: center;
-}
-
+      font-size:1.25rem;
+      color:#333;
+      height: 30rem;
+      overflow: hidden;
+      white-space: pre-wrap;
+      text-align: center;
+    }
 
     /*— FEATURES —*/
     #features { background:#fff; text-align:center; }
@@ -153,17 +151,28 @@
     #whoiam { background:var(--clr-light); }
     #whoiam .container {
       display:flex; flex-wrap:wrap; align-items:flex-start;
-      gap:2rem; max-width:900px; margin:0 auto;
+      justify-content:center; gap:2rem;
+      max-width:900px; margin:0 auto;
+    }
+    .bio-photos {
+      display:flex; gap:2rem; justify-content:center;
+      align-items:flex-start; flex:1;
     }
     .bio-photo {
       width:200px; height:auto; border-radius:.5rem;
       object-fit:cover; box-shadow:0 4px 12px rgba(0,0,0,.1);
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+    .bio-photo:hover {
+      transform: scale(1.05);
+      box-shadow:0 8px 20px rgba(0,0,0,.15);
     }
     @media(max-width:768px){
       #whoiam .container { flex-direction:column; align-items:center; }
+      .bio-photos { flex-direction:column; }
     }
 
-    /*— OBSTACLE CHALLENGER —*/
+    /*— OBSTACLE CHALLENGES —*/
     #obstacle-challenges {
       background:#fff; display:flex; flex-wrap:wrap;
       align-items:center; justify-content:center;
@@ -316,8 +325,13 @@
   <!-- WHO I AM -->
   <section id="whoiam" data-aos="fade-up">
     <div class="container">
-      <img src="images/profile.jpg" alt="Blake Bird" class="bio-photo" data-aos="fade-up" data-aos-offset="200" />
-      <div data-aos="fade-left" data-aos-offset="200">
+      <div class="bio-photos">
+        <img src="images/profile.jpg" alt="Blake Bird" class="bio-photo"
+             data-aos="fade-up" data-aos-offset="200" data-aos-duration="800" />
+        <img src="images/profile2.jpg" alt="Blake Bird Smiling" class="bio-photo"
+             data-aos="fade-up" data-aos-offset="200" data-aos-duration="800" />
+      </div>
+      <div class="bio-text" data-aos="fade-left" data-aos-offset="200">
         <h2>Who I Am</h2>
         <p>I'm <strong>Blake Bird</strong>, Senior at Academic Magnet High School – soon-to-be Freshman at High Point University.</p>
         <p>I am taking on the challenge of mastering four majors: Physics; Mathematical Economics; Accounting; & Finance, and a minor in Data Analytics.</p>
@@ -328,7 +342,7 @@
     </div>
   </section>
 
-  <!-- OBSTACLE CHALLENGER -->
+  <!-- OBSTACLE CHALLENGES -->
   <section id="obstacle-challenges" data-aos="fade-up">
     <div class="text" data-aos="fade-right">
       <h2>Handling the Toughest Trash Challenges</h2>
@@ -421,9 +435,9 @@
     <div class="container">
       <h2>Ready to Book?</h2>
       <form action="https://formsubmit.co/bbird1@highpoint.edu" method="POST">
-        <!-- disable their captcha -->
+        <!-- disable captcha -->
         <input type="hidden" name="_captcha" value="false" />
-        <!-- redirect on success -->
+        <!-- redirect -->
         <input type="hidden" name="_next" value="https://blockade279.github.io/trash-concierge-site/thankyou.html" />
 
         <input type="text"   name="name"       placeholder="Full Name"     required />
@@ -434,7 +448,7 @@
         <button type="submit" class="btn">Submit Booking</button>
       </form>
       <p style="margin-top:.5rem;font-size:.875rem;color:#555;">
-        *After you submit, I’ll send Venmo payment instructions within 24 hours.
+        *After you submit, I’ll send Venmo payment instructions within 24 hours.<br/>
         **Note:** If we haven’t hit our minimum sign-ups yet, it may take a little longer for me to get back to you.
       </p>
     </div>
