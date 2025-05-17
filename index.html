@@ -427,28 +427,36 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" data-aos="fade-up">
-    <div class="container">
-      <h2>Ready to Book?</h2>
-      <form action="https://formsubmit.co/bbird1@highpoint.edu" method="POST">
-        <!-- disable captcha -->
-        <input type="hidden" name="_captcha" value="false" />
-        <!-- redirect -->
-        <input type="hidden" name="_next" value="https://blockade279.github.io/trash-concierge-site/thankyou.html" />
+<section id="contact" data-aos="fade-up">
+  <div class="container">
+    <h2>Ready to Book?</h2>
+    <form method="post" action="https://formsubmit.co/bbird1@highpoint.edu">
+      <!-- disable captcha -->
+      <input type="hidden" name="_captcha" value="false" />
+      <!-- redirect -->
+      <input type="hidden" name="_next" value="https://blockade279.github.io/trash-concierge-site/thankyou.html" />
 
-        <input type="text"   name="name"       placeholder="Full Name"     required />
-        <input type="email"  name="email"      placeholder="Email Address" required />
-        <input type="text"   name="address"    placeholder="Home Address"  required />
-        <label>Start Date <input type="date" name="start_date" value="2025-06-01" required /></label>
-        <label>End Date   <input type="date" name="end_date"   value="2025-08-09" required /></label>
-        <button type="submit" class="btn">Submit Booking</button>
-      </form>
-      <p style="margin-top:.5rem;font-size:.875rem;color:#555;">
-        *After you submit, I’ll send Venmo payment instructions within 24 hours.<br/>
-        **Note:** If we haven’t hit our minimum sign-ups yet, it may take a little longer for me to get back to you.
-      </p>
-    </div>
-  </section>
+      <input type="text"   name="name"        placeholder="Full Name"      required />
+      <input type="email"  name="email"       placeholder="Email Address"  required />
+      <input type="text"   name="address"     placeholder="Home Address"   required />
+      <label>
+        Start Date
+        <input type="date" name="start_date" value="2025-06-01" required />
+      </label>
+      <label>
+        End Date
+        <input type="date" name="end_date"   value="2025-08-09" required />
+      </label>
+
+      <button type="submit" class="btn">Submit Booking</button>
+    </form>
+    <p style="margin-top:.5rem;font-size:.875rem;color:#555;">
+      *After you submit, I’ll send Venmo payment instructions within 24 hours.<br/>
+      **Note:** If we haven’t hit our minimum sign-ups yet, it may take a little longer for me to get back to you.
+    </p>
+  </div>
+</section>
+
 
   <!-- FOOTER -->
   <footer data-aos="fade-up">
